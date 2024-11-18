@@ -1,0 +1,7 @@
+1 Implement the error handling in the code wherever it is necessary.
+2 While saving the rdb file , we should create a child process ,or do it asynchronously without blocking the execution of other commands.
+3 Implement the consensus mechanism for deciding who will be the master and which others will be the child nodes.
+4 Find what is the use of the replicas like (how to achieve the sharding).
+5 Implement the wait command at the last .
+6 Make the code more modular and make different files for doing different things.
+7 Wherever it is possible to make the code asynchronous make it .

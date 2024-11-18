@@ -1,0 +1,105 @@
+1 Simple string--- the simple string in the redis cannot store the non human readable character and also the linefeed(\n) or carriage return (\r) in them 
+  Bulk strings-----The bulk string can contain any binary string in them.The binary string in the redis means that it can store any data in it like the human readable and non readable characters as well like for example it can also contain the image in it in the encoded form or sequence of the characters 
+ 
+
+2 Buffer -- The buffer is the array of the bytes in the javascript it used to store the string in the bytes form , each of the character of the string is converted to its byte value / its ASCII value.
+The reason to convert the bytes value to the ASCII value is that the string in the binary form is more easier to manipulate than the string in its normal form 
+Also the buffer has the built in support for converting the data according to the different schemes like the binary form data stored in the form of the bytes can be converted back to a different string in different encoding styles.
+Like binary byte--- utf-8 encoding 
+binary bytes --- other form of the encoding the same binary bytes buffer can be converted into 
+many API's of the node.js are made to work with the binary bytes data -- like the network api's , sockets by default communicate in the form of the binary bytes .
+
+
+3 Slice method of the arrays--- The slice method is used to select a part of the array from the complete array. 
+   array_name.slice(start_index,length_to_be_sliced)---if the length of the slice is not defined then the complete array from the start_index to the end will be sliced
+
+4 Split ---The Split is used to convert the string to the different elements of the array on the basis of the character that is used for the split--- like suppose we have a string as 
+----s="Hello how are you" and we do something like 
+---- const a=s.split(" ")-- the split will be performed on the basis of the space character and the array formed will be like ---[hello,how,are,you] indexing---(0,1,2,3)
+
+
+5 The destructuring in the javascript works in the following way 
+  let arr=["hello","world","this"];
+  let [a,b,c]=arr;
+  the three variables a, b and c will be assigned the values in the following manner
+  then a="hello"
+  b="world" 
+  c="this"
+ 
+ 6 The parseInt function in the javascript is used to parse the given string from the starting and will look for the occurence of the character that can be a integer value , it will form the integer upto the characters that can form an integer 
+
+ let a="12481asdfjlkafd"
+ then let b=parseInt(a) ,
+ here the b wil be given the value= 12481 
+ From the start the string will be traversed and the parsing will stopped in the first occurence of the non integer value 
+ For example if the string is s="lkas134"
+ Then let a=parseInt(s) 
+ then the a will be having the value of NAN it will return the not defined value as the string did not contain any integer characters from the start 
+ 
+ The parseInt also have the options in it
+ let b=parseInt(s,radix)
+ radix --- it is the base of the integer which will be converted into like base can be 10 , 2 etc
+ 
+
+ 7  The javascript has two types the primitive types of the data and the non primitive that is the reference type of the data  the primitive types are the ones in which the size of the variable that is storing that data is fixed where as the referenced types are the ones in which the size of the type of the data cannot be determined like the objects , arrays and the functions so instead of storing the content of these in a variable the reference to the memory address where they are stored is given to find their data in that memory space
+
+ 8 To create a object in javascript let a={}
+   this object can store the key value pairs in the javascript
+
+9 Map can be used without importing any libraries and also the map stores the key value pairs in the order as they are inserted in it.
+
+
+10 if an object is declared constant in the javascript then we cannot reassign it to any other object but we can still change the
+
+11 There are three events that can be used to manaage the connections 
+   a--- Destroy()---- it is the event that is used in the client side to terminate the existing connection with the server.
+   In this method the client closes the connection abruptly with the server without waiting for any furthur data if it is in the stream of the data that is sent by the server
+   b---- client.end() (Here the client is the client object which communicates with the server)
+         .end()---This method closes the connection gracefully with the server , it means that if there is any data in the stream of the data that is used for the communication then that data will first be transmitted along with any other operations that are in the pipeline before stopping the communication with the server.
+   c---- connection.close()--- Here the connection is the server side object which is the instance of the net.socket() and is used to represent the client which connects to the server.
+         .close()---the .close() function is used to close the connection with the specific client that the server has connected with and this connection is different for each of the client that connects to the server.
+        
+        The server code is written as follows 
+         const server = net.createServer((connection) => {
+  connection.on('data',(data)=>
+  {
+    //we need to firstly convert the received data to the string form 
+    //data is the command from the client 
+    const binaryPayload=Buffer.from(data);
+    let stringPayload=binaryPayload.toString();//convert the binary payload to the string form
+    const response=handlePayload(stringPayload);
+    return connection.write(response||data);//if the response is null then we are returning the data or the command received as the output directly 
+  })
+   });
+
+The net.createServer((connection)=>{
+  //this is the callback function which is called every time a new client connects to the server and the connection is the instance of the net.socket() and it represents the client that connects to the server 
+  //so the connection.close() will be called on that specific client only which has connected to the server and not on all the clients which are connected to the server at the time.
+})
+
+12 The includes function in the javascript string 
+   The inlcudes function is used to search for a particular string present as a substring in the given string that is provided to  it as the paramter.
+
+   it works as follows 
+   string.includes(string_to_be_searched, position )
+   positon--at which we want the search to begin at (default value for it is 0) and it a optional parameter
+
+13 The doubt --- The javascript works on the principle of the event loop so if the client connects to the server then its call back function is called and it is pushed into the callback queue and the client can read or write till the time it wants to , but the callback function for the client get popped-off from the queue so how is this possible for the client to communicate continously even if its callback function is popped off the queue , also if the client keeps connection with the server without its callback getting popped off then how are the other functions that are pushed in the call back queue after the connection is established are run , like if there is a sum function that is called after the callback of the client is pushed in the queue then how will it get executed
+Answer--- The callback which is called for the client when it connects to the server is popped out as soon as it completes its execution , the reason the client is still able to communicate with the server is for every client there is a separate call back which is calle and in the callback function we attach the different event listeners to the instance of the client like the .on , .end , .write etc these event listeners are attached to the client instance untill their lifetime and whenever any event occurs then the callback that is defined in them is pushed in the queue and in this way by attaching the event listeners to the client socket instance (which is unique for every client ) the callback function is completed and is popped out of the queue , although the event listeners are attached to the instance of the client and they will continue to listen for the events .
+
+14 The splice function is used to addd replace or remove  any specific object from the array on the basis of its index.
+  For example to remove any element from the array we can use it like this 
+    array_name.splice(index,1) 
+    index-- it is the index of the element to be removed
+    1--- it is the no. of the elements that we have to remove from the starting index
+    
+15 The splice function is used for the following 
+    For adding the elements to the array
+    for removing the elements from the array
+    For replacing the existing elements 
+16 The indexof the function in the arrays works incase of the sockets because every of the socket that connects to the server is unique as a separate memory location is allocated to them and hence the references to these socket objects are unique and the values inside them is not used while removing them from the array of the replicas.
+
+--Every socket object stores the information such as the IP address of the client , port of the client etc that is connected to it.
+
+17 The Big endian means reading the number from the left to the right.(this will store the values of the most significant bit in the lowest memory address).
+18 The little endian means readin the number from the right to the left.(this will store the value of the least significant bit in the lowest memory address).
