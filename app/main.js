@@ -305,7 +305,7 @@ function handleSet(key_value) {
      const currentTime = Date.now();
      let time=key_value[5].split(":")[1];
      console.log("time:", time);
-     const expiryInMilliseconds = parseInt(time, 10);
+     const expiryInMilliseconds = parseFloat(time);
      expiryTime = currentTime + expiryInMilliseconds;
      valueToSet[1] = expiryTime; // Update expiry time
    }
