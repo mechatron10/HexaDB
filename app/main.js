@@ -858,7 +858,7 @@ const server = net.createServer((connection) => {
    });
 parseArgs(db_config);
 // Now load the redis RDB file
-readRdbFile();
+//readRdbFile();
 server.listen(db_config.port, "127.0.0.1");
 if(serverProperties.role=="slave")
 {
