@@ -323,11 +323,12 @@ function handleGet(key) {
    const [storedValue, expiryTime] = value;
    // Check if the key has expired
    console.log("The type of the stored value is :",typeof(storedValue));
+   console.log("The value is :",storedValue);
    if (expiryTime > 0 && Date.now() > expiryTime) {
      keyValueMap.delete(key[0]); // Remove expired key
      return "$-1\r\n"; // Key has expired
    }
-   return toBulkResp(storedValue);
+   return toBulkResp([storedValue]);
  }
 function handleInfo(infoType)
 {
