@@ -217,7 +217,7 @@ function toBulkResp(message) {
     return `$1\r\n${message[0]}\r\n`;
   }
   if (typeof message[0] === 'string') {
-    let l = message.length;
+    let l = message[0].length;
     return `$${l}\r\n${message[0]}\r\n`;
   }
   // If it's not a string or number, handle other data types as needed
