@@ -211,12 +211,14 @@ function toSimpleResp(message)
    return `+${message}\r\n`;
 }
 function toBulkResp(message) {
-  if (typeof message === 'number') {
-    return `$1\r\n${message}\r\n`;
+  console.log("Type of message is:",typeof message[0]);
+  console.log("The message is :",message[0]);
+  if (typeof message[0] === 'number') {
+    return `$1\r\n${message[0]}\r\n`;
   }
-  if (typeof message === 'string') {
+  if (typeof message[0] === 'string') {
     let l = message.length;
-    return `$${l}\r\n${message}\r\n`;
+    return `$${l}\r\n${message[0]}\r\n`;
   }
   // If it's not a string or number, handle other data types as needed
   return '$-1\r\n'; // Example response for unsupported types
