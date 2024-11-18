@@ -304,8 +304,9 @@ function handleSet(key_value) {
      // If the PX parameter is present, calculate the expiry time in Unix format
      const currentTime = Date.now();
      let time=key_value[5].split(":")[1];
-     console.log("time:", time);
+
      const expiryInMilliseconds = parseFloat(time);
+     console.log("time: ", expiryInMilliseconds);
      expiryTime = currentTime + expiryInMilliseconds;
      valueToSet[1] = expiryTime; // Update expiry time
    }
