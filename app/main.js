@@ -253,7 +253,7 @@ function toBulkString(payload)
     }  
 
 // Prepend the total length and the required "\r\n" to bulkString
-  bulkString = `$${totalLength}\r\n${bulkString}`;
+  bulkString = `$${totalLength}\r\n${bulkString}\r\n`;
   return bulkString;
 }
 function handeleEcho(payload)
