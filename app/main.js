@@ -243,7 +243,7 @@ function toBulkString(payload)
 
     for (const key in payload) {
     // Constructing the key:value pair
-    const pair = `${key}:${payload[key]}`;
+    const pair = `${key}:${payload[key]}\r\n`;
     
     // Append to bulkString
     bulkString += pair;
