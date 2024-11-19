@@ -299,7 +299,6 @@ function handleSet(key_value) {
   }
    let expiryTime = 0; // Default expiry value of 0 means no expiry
    const valueToSet = [parseValue(key_value[2]), expiryTime];
-   console.log("expiry time in miliseconds :", expiryTime);
    if (key_value[4] && key_value[4].toUpperCase() === "PX") {
      // If the PX parameter is present, calculate the expiry time in Unix format
      const currentTime = Date.now();
@@ -307,6 +306,7 @@ function handleSet(key_value) {
 
      const expiryInMilliseconds = parseFloat(time);
      console.log("time: ", expiryInMilliseconds);
+     console.log(`currenttime :${Date.now()} , current time+ expiry time : ${Date.now()+expiryInMilliseconds}`);
      expiryTime = currentTime + expiryInMilliseconds;
      valueToSet[1] = expiryTime; // Update expiry time
    }
