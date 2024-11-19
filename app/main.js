@@ -335,7 +335,7 @@ function handleInfo(infoType)
 {
    if(infoType[0].toUpperCase()=="REPLICATION")
    {
-        return toBulkString(server_properties);
+        return toBulkString(serverProperties);
    }
 }
 function handleReplconf(args)
