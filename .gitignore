@@ -1,9 +1,6 @@
 node_modules/
 commandServer/
 redis-core/rdb.hex
-Functions.txt
-How to test.txt
-learning.txt
-New_Things.txt
-README.md
+*.txt
+README.node_modules
 codecrafters.yml

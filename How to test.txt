@@ -1,1 +1,0 @@
-ncat 127.0.0.1 6379  in the command prompt and then start sending the commands to the server
