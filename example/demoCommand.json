@@ -1,0 +1,34 @@
+{
+    "commands": [
+      {
+        "description": "Ping the server to check if it's responsive",
+        "command": "*1\r\n$4\r\nPING\r\n",
+        "expectedResponse": "+PONG\r\n"
+      },
+      {
+        "description": "Set a key-value pair",
+        "command": "*3\r\n$3\r\nSET\r\n$3\r\nfoo\r\n$3\r\nbar\r\n",
+        "expectedResponse": "+OK\r\n"
+      },
+      {
+        "description": "Get the value of a key",
+        "command": "*2\r\n$3\r\nGET\r\n$3\r\nfoo\r\n",
+        "expectedResponse": "$3\r\nbar\r\n"
+      },
+      {
+        "description": "Set a key-value pair with a timer",
+        "command": "*5\r\n$3\r\nSET\r\n$3\r\nfoo\r\n$2\r\n10\r\n$3\r\nbar\r\n",
+        "expectedResponse": "+OK\r\n"
+      },
+      {
+        "description": "Check if the server saves the state (SAVE command)",
+        "command": "*1\r\n$4\r\nSAVE\r\n",
+        "expectedResponse": "+OK\r\n"
+      },
+      {
+         "description": "How to make the replica of the master running at specific port",
+         "command": "node main.js  --port 8000  --replicaof \"127.0.0.1 6379\" ",
+         "expectedResponse": "The replica will be connected with the master"
+      }
+    ]
+  }

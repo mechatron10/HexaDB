@@ -53,11 +53,10 @@ function writeCommand(client, command) {
 
 async function executeCommands(client) {
   try {
-    await writeCommand(client, "*1\r\n$4\r\nMULTI\r\n");
-    await writeCommand(client, "*3\r\n$3\r\nset\r\n$3\r\nfoo\r\n$3\r\n10");
-    await writeCommand(client, "*2\r\n$3\r\nget\r\n$3\r\nfoo\r\n");
-    await writeCommand(client, "*1\r\n$4\r\nINCR\r\n$3\r\nfoo\r\n");
-    await writeCommand(client, "*1\r\n$4\r\nEXEC\r\n");
+    for(let i=0;i<10000000;++i)
+    {
+      await writeCommand(client, "*1\r\n$4\r\nPING\r\n");
+    }
   } catch (error) {
     console.error("An error occurred:", error);
   }
