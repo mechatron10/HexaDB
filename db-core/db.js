@@ -6,11 +6,11 @@ const serverProperties={
  const redisDataTypes=require('./redisDataTypes');
  const redisData=new redisDataTypes();
  const List = require('./List');
- let replica={};//this will be filled only when the server will be a replica
+ let replica={};
  let fs=require('fs');
 let db_config={
-   dir : "./redis-core",
-   dbfilename : "rdb.hex",
+   dir : "./db-core",
+   dbfilename : " rdb.hex",
    port : 6379,
    master_host : "",
    master_port : ""
@@ -36,7 +36,7 @@ function readRdbFile(map = keyValueMap, file) {
       let i = 0;
       const dirName = db_config.dir;
       const fileName = db_config.dbfilename;
-      const filePath = dirName + "/" + fileName;
+      const filePath = dirName +"/"+ fileName;
   
       let dataBuffer;
   

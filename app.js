@@ -9,7 +9,7 @@ let serverProcess;
 let isServerRunning = false;
 if (!isServerRunning) {
     console.log("Starting the TCP server...");
-    serverProcess = spawn('node', ['redis-core/main.js', '--dbfilename', 'rdb.hex'], {
+    serverProcess = spawn('node', ['db-core/main.js', '--dbfilename', 'rdb.hex'], {
         detached: false,
         stdio: ['inherit', 'pipe', 'pipe'] 
     });

@@ -2,5 +2,5 @@ node_modules/
 commandServer/
 redis-core/rdb.hex
 *.txt
-README.node_modules
+README.md
 codecrafters.yml
