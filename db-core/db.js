@@ -27,7 +27,6 @@ var MultiClientMap=new Map();
 var replicaList=[];
 function readRdbFile(map = keyValueMap, file) {
     try {
-      // console.log("Inside RDB");
   
       const opCodes = {
         resizeDb: "fb",

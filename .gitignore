@@ -1,6 +1,7 @@
 node_modules/
 commandServer/
-redis-core/rdb.hex
+db-core/rdb.hex
 *.txt
 README.md
 codecrafters.yml
+db-core/writeRdb.js
