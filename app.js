@@ -16,14 +16,14 @@ if (!isServerRunning) {
 }
  serverProcess.stdout.on('data', (data) => {
        const output = data.toString();
-        console.log(`Server output: ${output}`);
+       // console.log(`Server output: ${output}`);
 
         // Check if the server is ready
         if (output.includes("Server is listening at the port")) {
             console.log("TCP server is ready to accept connections.");
             isServerRunning = true; 
         }
-    console.log(`Server stdout: ${data}`);
+   // console.log(`Server stdout: ${data}`);
 });
 
 serverProcess.stderr.on('data', (data) => {

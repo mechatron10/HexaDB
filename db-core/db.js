@@ -24,10 +24,10 @@ const handshakeConfig={
 };
 let keyValueMap=new Map();
 var MultiClientMap=new Map();
-var replicaList=[];//this must not be constant
+var replicaList=[];
 function readRdbFile(map = keyValueMap, file) {
     try {
-      console.log("Inside RDB");
+      // console.log("Inside RDB");
   
       const opCodes = {
         resizeDb: "fb",
@@ -46,7 +46,7 @@ function readRdbFile(map = keyValueMap, file) {
         throw new Error(`Error reading file: ${err.message}`);
       }
   
-      console.log("Data buffer is: ", dataBuffer);
+      // console.log("Data buffer is: ", dataBuffer);
   
       const getNextNBytes = (n) => {
         if (i + n > dataBuffer.length) {
@@ -111,7 +111,7 @@ function readRdbFile(map = keyValueMap, file) {
   
       const setTimeStamp = () => {
         try {
-          i++; // Skipping the "fc" byte
+          i++; 
           if (i + 8 > dataBuffer.length) {
             throw new Error("Not enough bytes to read timestamp");
           }
@@ -125,13 +125,13 @@ function readRdbFile(map = keyValueMap, file) {
   
       const resizeDb = () => {
         try {
-          console.log("Inside resizeDb");
+          // console.log("Inside resizeDb");
           i++;
           const hashTableSize = hashTable();
           const expiryHashTableSize = expiryHashTable();
   
-          console.log("HashTableSize =", hashTableSize);
-          console.log("ExpiryHashTableSize =", expiryHashTableSize);
+          // console.log("HashTableSize =", hashTableSize);
+          // console.log("ExpiryHashTableSize =", expiryHashTableSize);
   
           for (let j = 0; j < hashTableSize; ++j) {
             const currentB = dataBuffer[i]?.toString(16);
@@ -139,7 +139,7 @@ function readRdbFile(map = keyValueMap, file) {
               throw new Error(`Invalid byte at index ${i}`);
             }
   
-            console.log("The current Byte is:", currentB);
+          //  console.log("The current Byte is:", currentB);
   
             let timestamp = 0;
             if (currentB === "fc") {
@@ -150,14 +150,14 @@ function readRdbFile(map = keyValueMap, file) {
             const keyLength = getNextObjLength();
             const key = getNextNBytes(keyLength);
   
-            console.log("Key is:", key.toString());
-            console.log("Value type is:", valueType);
+            // console.log("Key is:", key.toString());
+            // console.log("Value type is:", valueType);
   
             if (valueType === 0) {
               const valueLength = getNextObjLength();
               const value = getNextNBytes(valueLength);
               const valueToSet = [value.toString(), timestamp];
-              console.log(valueToSet);
+             // console.log(valueToSet);
               map.set(key.toString(), valueToSet);
             } else if (valueType === 1) {
               const listLength = getNextObjLength();
@@ -166,12 +166,12 @@ function readRdbFile(map = keyValueMap, file) {
                 : map.get(key.toString())[0];
               let stringCount = 0;
   
-              console.log("Length of the list is:", listLength);
+              // console.log("Length of the list is:", listLength);
   
               while (stringCount < listLength) {
                 const valueLength = getNextObjLength();
                 const value = getNextNBytes(valueLength);
-                console.log("Value is:", value.toString());
+                // console.log("Value is:", value.toString());
                 list.addBack(value.toString());
                 stringCount++;
               }
@@ -229,9 +229,9 @@ function readRdbFile(map = keyValueMap, file) {
       // First, get the current state of the DB
       const dirName = db_config.dir;
       const fileName = db_config.dbfilename;
-      console.log("directory name:", dirName," fileName :",fileName);
+      //console.log("directory name:", dirName," fileName :",fileName);
       const filePath = dirName + "/" + fileName;
-      console.log("filePath: ",filePath);
+      //console.log("filePath: ",filePath);
       let rdb = Buffer.from([
         0x52, 0x45, 0x44, 0x49, 0x53,   // "REDIS"
         0x30, 0x30, 0x30, 0x33,         // "0003"
@@ -265,7 +265,7 @@ function readRdbFile(map = keyValueMap, file) {
               string_encoded_value = Buffer.concat([string_encoded_value, lengthEncoding(listLength)]);
   
               let elements = value[0].getRange(0, value[0].getSize() - 1);
-              console.log("elements are:", elements);
+              // console.log("elements are:", elements);
   
               for (let e of elements) {
                 let val = Buffer.from(e);
@@ -306,7 +306,7 @@ function readRdbFile(map = keyValueMap, file) {
   }
   function parseArgs(config) 
 {
-  const args = process.argv.slice(2); // Skip 'node' and script name in argv
+  const args = process.argv.slice(2); 
   const requiredArgs = new Set(["--port", "--dir", "--dbfilename", "--replicaof"]);
   const validArgs = ["--port", "--dir", "--dbfilename", "--replicaof"];
 
