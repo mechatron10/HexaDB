@@ -28,12 +28,12 @@ class redisStream{
                 return `${current_time}-0`;
             } 
         }
-        console.log("keys length is :",this.keys.length);
+        //console.log("keys length is :",this.keys.length);
         let lastkey = this.keys && this.keys.length > 0 ? this.keys[this.keys.length - 1] : null;
         let lastMiliseconds = lastkey ? parseInt(lastkey.split('-')[0]) : 0;
         let lastSequence_no = lastkey ? parseInt(lastkey.split('-')[1]) : 0;
-            console.log("last key is :",lastMiliseconds);
-            console.log("last sequence is :", lastSequence_no);
+            // console.log("last key is :",lastMiliseconds);
+            // console.log("last sequence is :", lastSequence_no);
         let currMiliseconds=xAddArgs[0].split('-')[0]!='*'?parseInt(xAddArgs[0].split('-')[0],10):'*';
         let currSequence_no=xAddArgs[0].split('-')[1]!='*'?parseInt(xAddArgs[0].split('-')[1],10):'*';;
         if(currMiliseconds==0&&currSequence_no==0)
@@ -60,7 +60,7 @@ class redisStream{
         this.streamData[xAddArgs[0]]={[xAddArgs[2]]:xAddArgs[4],
             [xAddArgs[6]]:xAddArgs[8]};
         this.keys.push(xAddArgs[0]);//inserting the key:value pairs entry id
-        console.log("value inserted is :",xAddArgs[0]);
+        //console.log("value inserted is :",xAddArgs[0]);
         return xAddArgs[0];
     }
     handleXrange(key1,key2)
@@ -92,8 +92,8 @@ class redisStream{
         
         let [key2Part1, key2Part2] = key2.split('-').map(part => parseInt(part, 10) || 0);
      
-        console.log("key1Part1="+key1Part1+" key1Part2="+key1Part2);
-        console.log("key2Part1="+key2Part1+" key2Part2="+key2Part2);
+        // console.log("key1Part1="+key1Part1+" key1Part2="+key1Part2);
+        // console.log("key2Part1="+key2Part1+" key2Part2="+key2Part2);
         let list = Object.entries(this.streamData)
           .filter(([id]) => {
             let [idPart1, idPart2] = id.split('-').map(part => parseInt(part, 10) || 0);
