@@ -256,3 +256,13 @@ Example Commands:
 Replace <port> with the port where the HTTP server is running (default: 3000).
 - **Note**: Refer more commands in `example/demoCommand.json` 
 
+
+## Conclusion
+
+Thank you for exploring **Hexa DB**. For more information or to connect with me, feel free to visit my profiles below:
+
+- **GitHub**: [mechatron10](https://github.com/mechatron10)
+- **LeetCode**: [Anurag112](https://leetcode.com/u/Anurag112/)
+- **LinkedIn**: [Anurag Soni](https://www.linkedin.com/in/anurag-soni-191220219/)
+- **X (formerly Twitter)**: [mechatron010](https://x.com/mechatron010)
+
