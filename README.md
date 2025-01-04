@@ -72,7 +72,7 @@ Commands executed on the master are forwarded to replicas. This ensures:
 
 ## Architecture Overview  
 
-![Redis Clone Architecture](![Redis architecture](/images/redis.jpg))
+![Redis Clone Architecture](/images/redis.jpg)
 
 ---
 
