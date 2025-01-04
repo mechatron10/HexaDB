@@ -15,8 +15,6 @@ Explore Hexa DB to understand how distributed databases work under the hood and 
 
 # Project Architecture
 
-# HexaDB  
-
 A lightweight, custom implementation of Redis with essential database functionalities, a distributed master-replica architecture, and data persistence features.
 
 ---
