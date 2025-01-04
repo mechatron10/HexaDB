@@ -1,1 +1,1 @@
-![Redis architecture] (/images/redis.jpg)
+![Redis architecture](/images/redis.jpg)
