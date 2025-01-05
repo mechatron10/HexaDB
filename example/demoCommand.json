@@ -1,34 +1,100 @@
-{
+  {
     "commands": [
-      {
-        "description": "Ping the server to check if it's responsive",
-        "command": "*1\r\n$4\r\nPING\r\n",
-        "expectedResponse": "+PONG\r\n"
-      },
-      {
-        "description": "Set a key-value pair",
-        "command": "*3\r\n$3\r\nSET\r\n$3\r\nfoo\r\n$3\r\nbar\r\n",
-        "expectedResponse": "+OK\r\n"
-      },
       {
         "description": "Get the value of a key",
         "command": "*2\r\n$3\r\nGET\r\n$3\r\nfoo\r\n",
         "expectedResponse": "$3\r\nbar\r\n"
       },
       {
-        "description": "Set a key-value pair with a timer",
-        "command": "*5\r\n$3\r\nSET\r\n$3\r\nfoo\r\n$2\r\n10\r\n$3\r\nbar\r\n",
+        "description": "Ping the server to check if it's responsive",
+        "command": "*1\r\n$4\r\nPING\r\n",
+        "expectedResponse": "+PONG\r\n"
+      },
+      {
+        "description": "Retrieve the current configuration parameters matching the specified pattern.",
+        "command": "*4\r\n$6\r\nCONFIG\r\n$3\r\nGET\r\n$3\r\ndir\r\n$10\r\ndbfilename\r\n",
+        "expectedResponse": "Array of configuration parameters and their values."
+      },
+      {
+        "description": "Discard all commands issued after MULTI.",
+        "command": "*1\r\n$7\r\nDISCARD\r\n",
         "expectedResponse": "+OK\r\n"
       },
       {
-        "description": "Check if the server saves the state (SAVE command)",
+        "description": "Echo the given string.",
+        "command": "*2\r\n$4\r\nECHO\r\n$3\r\nhey\r\n",
+        "expectedResponse": "$3\r\nhey\r\n"
+      },
+      {
+        "description": "Execute all commands issued after MULTI.",
+        "command": "*1\r\n$4\r\nEXEC\r\n",
+        "expectedResponse": "Array of responses for each command executed."
+      },
+      {
+        "description": "Increment the integer value of a key by one.",
+        "command": "*2\r\n$4\r\nINCR\r\n$key_length\r\nyour_key\r\n",
+        "expectedResponse": "(integer) new value"
+      },
+      {
+        "description": "Provide information and statistics about the server.",
+        "command": "*1\r\n$4\r\nINFO\r\n",
+        "expectedResponse": "Bulk string reply with server information."
+      },
+      {
+        "description": "Return all keys matching the given pattern.",
+        "command": "*2\r\n$4\r\nKEYS\r\n$1\r\n*\r\n",
+        "expectedResponse": "Array of keys matching the pattern."
+      },
+      {
+        "description": "Insert all the specified values at the head of the list stored at key.",
+        "command": "*3\r\n$5\r\nLPUSH\r\n$key_length\r\nkey_of_list\r\n$value_length\r\nvalue\r\n",
+        "expectedResponse": "(integer) length of the list after the push operation"
+      },
+      {
+        "description": "Return the specified elements of the list stored at key.",
+        "command": "*4\r\n$6\r\nLRANGE\r\n$key_length\r\nkey\r\n$1\r\nstart_index\r\n$1\r\nend_index\r\n",
+        "expectedResponse": "Array of elements in the specified range."
+      },
+      {
+        "description": "Read a range of elements from a stream.",
+        "command": "*7\r\n$6\r\nXRANGE\r\n$4\r\nstream\r\n$1\r\nstart\r\n$1\r\nend\r\n",
+        "expectedResponse": "Array of entries in the specified range."
+      },
+      {
+        "description": "Acknowledge the reception of replication stream data.",
+        "command": "*3\r\n$8\r\nREPLCONF\r\n$6\r\nGETACK\r\n$1\r\n*\r\n",
+        "expectedResponse": "+OK\r\n"
+      },
+      {
+        "description": "Synchronously save the dataset to disk.",
         "command": "*1\r\n$4\r\nSAVE\r\n",
         "expectedResponse": "+OK\r\n"
       },
       {
-         "description": "How to make the replica of the master running at specific port",
-         "command": "node main.js  --port 8000  --replicaof \"127.0.0.1 6379\" ",
-         "expectedResponse": "The replica will be connected with the master"
+        "description": "Set the string value of a key with an expiration time.",
+        "command": "*5\r\n$3\r\nSET\r\n$key_length\r\nkey\r\n$value_length\r\nvalue\r\n$2\r\nPX\r\n$5\r\nmilliseconds\r\n",
+        "expectedResponse": "+OK\r\n"
+      },
+      {
+        "description": "Set the string value of a key without an expiration time.",
+        "command": "*3\r\n$3\r\nSET\r\n$key_length\r\nkey\r\n$value_length\r\nvalue\r\n",
+        "expectedResponse": "+OK\r\n"
+      },
+      {
+        "description": "Wait for the synchronous replication of write commands.",
+        "command": "*3\r\n$4\r\nWAIT\r\n$1\r\nnumreplicas\r\n$1\r\ntimeout\r\n",
+        "expectedResponse": "(integer) number of replicas acknowledged"
+      },
+      {
+        "description": "Add a new entry to a stream.",
+        "command": "*5\r\n$4\r\nXADD\r\n$4\r\nstream\r\n$1\r\n*\r\n$field_length\r\nfield\r\n$value_length\r\nvalue\r\n",
+        "expectedResponse": "The ID of the added entry."
+      },
+      {
+        "description": "Read a range of entries from a stream.",
+        "command": "*5\r\n$6\r\nXRANGE\r\n$4\r\nstream\r\n$1\r\nstart\r\n$1\r\nend\r\n",
+        "expectedResponse": "Array of entries in the specified range."
       }
     ]
   }
+  
