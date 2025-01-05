@@ -12,13 +12,6 @@ Key features include:
 
 Explore Hexa DB to understand how distributed databases work under the hood and expand it further to suit your requirements!
 
-
-# Project Architecture
-
-A lightweight, custom implementation of Redis with essential database functionalities, a distributed master-replica architecture, and data persistence features.
-
----
-
 ## Project Architecture  
 
 ### 1. **Master-Replica Architecture**  
@@ -119,8 +112,17 @@ To restore the database from a snapshot:
 
 For more detailed information on the RDB file format and its encoding, refer to the [Redis RDB File Format documentation](https://rdb.fnordig.de/file_format.html).
 
+## Data Structures Implemented
 
+This Redis clone supports the following data structures:
 
+- **Key-Value Pairs**: The simplest and most commonly used data structure in Redis, key-value pairs allow for straightforward storage and retrieval of string data. Each key is unique and maps directly to a value, facilitating efficient data access
+
+- **Lists**: Redis lists are ordered collections of strings, implemented as linked lists. They support operations such as adding elements to the head or tail, trimming based on index ranges, and retrieving elements by their position. This makes them suitable for tasks like message queues and timelines.
+
+- **Streams**: Introduced in Redis 5.0, streams are an append-only data structure designed for handling high-throughput, real-time data feeds. They allow for the storage of multiple fields and string values with an automatic, time-based sequence at a single key, making them ideal for building message brokers and event sourcing solutions.
+
+By implementing these data structures, your Redis clone can efficiently handle a wide range of use cases, from simple caching mechanisms to complex real-time data processing tasks.
 ## Features
 Hexa DB is a feature-rich distributed key-value database with functionalities inspired by Redis. Below are the detailed features based on its architecture:
 
